@@ -13,11 +13,10 @@ class Pixel;
 class Frame
 {
 	Pixel ***mPixels;
-public:
-	const int mWidth;
+	const int mLength;
 	const int mHeight;
-	Frame(const int &height, const int &width);
-	Pixel& operator() (int row, int col) const;
+public:
+	Frame(const int &height, const int &length);
 	~Frame();
 };
 

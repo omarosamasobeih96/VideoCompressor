@@ -2,24 +2,20 @@
 
 
 
-Frame::Frame(const int &height, const int &width) : mHeight(height), mWidth(width) {
+Frame::Frame(const int &height, const int &length) : mHeight(height), mLength(length) {
 	mPixels = new Pixel**[mHeight];
 	for (int i = 0; i < mHeight; ++i) {
-		mPixels[i] = new Pixel*[mWidth];
-		for (int j = 0; j < mWidth; ++j) {
-			mPixels[i][j] = new Pixel();
+		mPixels[i] = new Pixel*[mLength];
+		for (int j = 0; j < mLength; ++j) {
+			mPixels[i][j] = new Pixel(this, i, j);
 		}
 	}
-}
-
-Pixel& Frame::operator() (int row, int col) const {
-	return *mPixels[row][col];
 }
 
 Frame::~Frame()
 {
 	for (int i = 0; i < mHeight; ++i) {
-		for (int j = 0; j < mWidth; ++j) {
+		for (int j = 0; j < mLength; ++j) {
 			delete mPixels[i][j];
 		}
 		delete[] mPixels[i];
